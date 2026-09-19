@@ -32,3 +32,21 @@ impl Iterator for Digits {
   }
 }
 
+pub const fn join(digits: &[u32])-> u32 {
+  let mut x=0u32;
+
+  let mut i=0usize;
+  while i<digits.len() {
+    x*=10;
+    x+=digits[i];
+    i+=1;
+  }
+
+  x
+}
+
+
+
+
+
+

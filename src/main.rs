@@ -4,10 +4,11 @@ use std::fs::File;
 use std::io::{self, BufRead, Write};
 
 use overflow::{
-  digits::Digits,
-  permutations::HeapPermutations,
+  digits,
+  permutations,
 };
 
+use digits::Digits;
 
 
 
@@ -17,9 +18,11 @@ use overflow::{
  * The function is expected to return a STRING.
  * The function accepts STRING n as parameter.
  */
+fn solve(n: u32)-> &'static str {
+  overflow::permutations::permutations(Digits::new(n).collect::<Vec<_>>(),|digits| {
+  });
 
-fn solve(n: u32)-> u32 {
-  0
+  ""
 }
 
 fn main()-> Result<(),Box<dyn std::error::Error>> {
@@ -29,6 +32,10 @@ fn main()-> Result<(),Box<dyn std::error::Error>> {
     let mut fptr = File::create(env::var("OUTPUT_PATH").unwrap()).unwrap();
 
     let t = stdin_iterator.next().unwrap()?.trim().parse::<usize>()?;
+
+    for n in stdin_iterator.take(t).flatten().filter_map(|line| line.trim().parse::<u32>().ok()) {
+      writeln!(fptr,"{}",solve(n)).unwrap();
+    }
 
 
   Ok(())
